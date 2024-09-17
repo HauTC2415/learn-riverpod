@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class CouterScreen extends ConsumerStatefulWidget {
-  const CouterScreen({super.key});
+class CounterScreen extends ConsumerStatefulWidget {
+  const CounterScreen({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _CouterScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _CounterScreenState();
 }
 
 final counterProvider = StateProvider<int>((ref) => 0);
 
-class _CouterScreenState extends ConsumerState<CouterScreen> {
+class _CounterScreenState extends ConsumerState<CounterScreen> {
   @override
   Widget build(BuildContext context) {
     final count = ref.watch(counterProvider);
@@ -22,13 +22,14 @@ class _CouterScreenState extends ConsumerState<CouterScreen> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'You have pushed the button this many times: $count',
+            const Text(
+              'You have pushed the button this many times: ',
             ),
             Text(
               '$count',
-              style: Theme.of(context).textTheme.bodyMedium,
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
           ],
         ),
@@ -43,6 +44,7 @@ class _CouterScreenState extends ConsumerState<CouterScreen> {
                 ref.read(counterProvider.notifier).state++;
               },
               tooltip: 'Increment',
+              hoverColor: Theme.of(context).colorScheme.secondary,
               child: const Icon(Icons.add),
             ),
             FloatingActionButton(
